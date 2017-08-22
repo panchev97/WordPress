@@ -26,7 +26,7 @@
      */
      public function widget( $args, $instance ) {
        extract( $args );
-       var_dump( $instance );
+       
        $posts_args = array(
          'post_status'    => 'publish',
          'post_type'      => $instance['post_type_dropdown'],
