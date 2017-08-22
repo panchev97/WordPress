@@ -53,7 +53,7 @@ class RU_Plugin {
        $posts_args = array(
          'post_status'    => 'publish',
          'post_type'      => 'post',
-         'posts_per_page' => '5',
+         'posts_per_page' => '-1',
          'orderby'        => 'title',
          'order'          => 'asc',
        );
