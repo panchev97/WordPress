@@ -22,6 +22,12 @@ class RU_Plugin {
 
       //Register the shortcode
       add_action( 'init', array( $this, 'ru_fetching_posts_shortcode' ) );
+
+      //Register the help page
+      add_action( 'admin_init', array( $this, 'ru_register_help' ), 5 );
+
+      //Register admin pages for the plugin
+      add_action( 'admin_menu', array( $this, 'ru_admin_pages_callback' ) );
     }
 
      /**
@@ -35,8 +41,15 @@ class RU_Plugin {
     * Register a help section
     */
     public function ru_register_help() {
-      require_once( RU_PATH . '/ru-plugin-help-class.php' );
+      require_once( RU_PATH . '/ru-plugin-help.php' );
       new RU_Plugin_Help();
+    }
+
+    /**
+    * Callback for registering pages
+    */
+    public function ru_admin_pages_callback() {
+      add_menu_page(__( "Ru Help Page", 'rubase' ), __( "Ru Help Page", 'rubase' ), 'edit_themes', 'dx-plugin-base', array( $this, 'ru_plugin' ) );
     }
 
      /**
@@ -45,6 +58,15 @@ class RU_Plugin {
      public function ru_fetching_posts_shortcode() {
        add_shortcode( 'rusampcode', array( $this, 'ru_shortcode_body' ) );
      }
+
+     /**
+  	 *
+  	 * The content of the base page
+  	 *
+  	 */
+  	 public function ru_plugin() {
+  		 include_once( RU_PATH_INCLUDES . '/base-page-template.php' );
+  	 }
 
      /**
      * Returns the content of the sample shortcode
