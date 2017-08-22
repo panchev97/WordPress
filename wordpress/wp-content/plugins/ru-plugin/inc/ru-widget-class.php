@@ -26,7 +26,7 @@
      */
      public function widget( $args, $instance ) {
        extract( $args );
-
+       var_dump( $instance );
        $posts_args = array(
          'post_status'    => 'publish',
          'post_type'      => $instance['post_type_dropdown'],
@@ -48,6 +48,7 @@
                        <a href="<?php the_permalink() ?>" title=""><b><?php echo the_title() ?></b></a>
                      </h3>
                      <p><?php the_excerpt() ?></p>
+                     <img src="<?php the_post_thumbnail_url() ?>" width="<?php echo $instance['img_width'] ?>" height="<?php echo $instance['img_height'] ?>"  />
                  </div>
                </li>
              </ul>
@@ -83,6 +84,8 @@
        $instance['posts_number']         = strip_tags( $new_instance['posts_number'] );
        $instance['order_posts_dropdown'] = strip_tags( $new_instance['order_posts_dropdown'] );
        $instance['post_type_dropdown']   = strip_tags( $new_instance['post_type_dropdown'] );
+       $instance['img_height']           = strip_tags( $new_instance['img_height'] );
+       $instance['img_width']            = strip_tags( $new_instance['img_width'] );
 
        return $instance;
      }
@@ -96,6 +99,8 @@
             'posts_number'         => '1',
             'order_posts_dropdown' => 'asc',
             'post_type_dropdown'   => 'post',
+            'img_height'           => '100',
+            'img_width'            => '100',
         );
 
         $instance = wp_parse_args( $instance, $instance_defaults );
@@ -104,16 +109,20 @@
         $posts_number         = esc_attr( $instance['posts_number'] );
         $order_posts_dropdown = esc_attr( $instance['order_posts_dropdown'] );
         $post_type_dropdown   = esc_attr( $instance['post_type_dropdown'] );
-
+        $img_height           = esc_attr( $instance['img_height'] );
+        $img_width            = esc_attr( $instance['img_width'] );
             ?>
+
         <p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e( "Title:", 'rubase'); ?></label> <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" /></p>
         <p><label for="<?php echo $this->get_field_id('posts_number'); ?>"><?php _e( "Number of Posts:", 'rubase'); ?></label> <input class="widefat" id="<?php echo $this->get_field_id('posts_number'); ?>" name="<?php echo $this->get_field_name('posts_number'); ?>" type="number" min="0" value="<?php echo $posts_number; ?>" /></p>
-        <p>
-          <label for="<?php echo $this->get_field_id('order_posts_dropdown'); ?>"><?php _e( "Order by:", 'rubase' ); ?></label>
-          <select name="<?php echo $this->get_field_name('order_posts_dropdown'); ?>" id="<?php echo $this->get_field_id('order_posts_dropdown'); ?>" class="widefat">
-            <option value="asc"<?php selected( $instance['order_posts_dropdown'], 'asc' ); ?>><?php _e( "Ascending", 'rubase' ); ?></option>
-            <option value="desc"<?php selected( $instance['order_posts_dropdown'], 'desc' ); ?>><?php _e( "Descending", 'rubase' ); ?></option>
-          </select>
+        <p>Set Custom Image Size</p>
+        <p><label for="<?php echo $this->get_field_id('img_height'); ?>"><?php _e( "Height:", 'rubase'); ?></label> <input class="widefat" id="<?php echo $this->get_field_id('img_height'); ?>" name="<?php echo $this->get_field_name('img_height'); ?>" type="number" value="<?php echo $img_height; ?>" /></p>
+        <p><label for="<?php echo $this->get_field_id('img_height'); ?>"><?php _e( "Width:", 'rubase'); ?></label> <input class="widefat" id="<?php echo $this->get_field_id('img_width'); ?>" name="<?php echo $this->get_field_name('img_width'); ?>" type="number" value="<?php echo $img_width; ?>" /></p>
+        <label for="<?php echo $this->get_field_id('order_posts_dropdown'); ?>"><?php _e( "Order by:", 'rubase' ); ?></label>
+        <select name="<?php echo $this->get_field_name('order_posts_dropdown'); ?>" id="<?php echo $this->get_field_id('order_posts_dropdown'); ?>" class="widefat">
+          <option value="asc"<?php selected( $instance['order_posts_dropdown'], 'asc' ); ?>><?php _e( "Ascending", 'rubase' ); ?></option>
+          <option value="desc"<?php selected( $instance['order_posts_dropdown'], 'desc' ); ?>><?php _e( "Descending", 'rubase' ); ?></option>
+        </select>
         </p>
         <p>
           <label for="<?php echo $this->get_field_id('post_type_dropdown'); ?>"><?php _e( "Select a post type", 'rubase' ); ?></label>
