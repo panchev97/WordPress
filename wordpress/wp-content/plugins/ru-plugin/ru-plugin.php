@@ -38,7 +38,7 @@ class RU_Plugin {
     * Callback for registering pages
     */
     public function ru_admin_pages_callback() {
-      add_menu_page(__( "Ru Help Page", 'rubase' ), __( "Ru Help Page", 'rubase' ), 'edit_themes', 'ru_plugin', array( $this, 'ru_plugin' ) );
+      add_menu_page(__( "Ru Help Page", 'rubase' ), __( "Ru Help Page", 'rubase' ), 'edit_themes', 'ru-plugin', array( $this, 'ru_plugin' ) );
     }
 
      /**
@@ -64,7 +64,7 @@ class RU_Plugin {
        $posts_args = array(
          'post_status'    => 'publish',
          'post_type'      => 'post',
-         'posts_per_page' => '-1',
+         'posts_per_page' => '100',
          'orderby'        => 'title',
          'order'          => 'asc',
        );
