@@ -85,6 +85,7 @@
            'title'                       => 'Title',
            'testimonials'                => '1',
            'order_testimonials_dropdown' => 'asc',
+           'testimonials_number'         => '1',
        );
 
        $instance = wp_parse_args( $instance, $instance_defaults );
