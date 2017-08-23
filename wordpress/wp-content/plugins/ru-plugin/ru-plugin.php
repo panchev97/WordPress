@@ -64,29 +64,28 @@ class RU_Plugin {
        $posts_args = array(
          'post_status'    => 'publish',
          'post_type'      => 'post',
-         'posts_per_page' => '100',
+         'posts_per_page' => '-1',
          'orderby'        => 'title',
          'order'          => 'asc',
        );
        $query = new WP_QUERY( $posts_args );
        ?>
        <div class="wrapper">
-         <h1><?php echo $instance['title'] ?></h1>
-         <?php if ( $query->have_posts() ) :
-           while ( $query->have_posts() ) : $query->the_post() ?>
-             <ul>
-               <li>
-                 <div class="post">
-                   <a href="<?php the_permalink() ?>"
-                     <h3 class="title">
-                       <a href="<?php the_permalink() ?>" title=""><b><?php echo the_title() ?></b></a>
-                     </h3>
+           <ul>
+             <?php if ( $query->have_posts() ) : ?>
+               <?php while ( $query->have_posts() ) : $query->the_post() ?>
+                 <li>
+                   <div class="post">
+                     <a href="<?php the_permalink() ?>"
+                       <h3 class="title">
+                         <a href="<?php the_permalink() ?>" title=""><b><?php echo the_title() ?></b></a>
+                       </h3>
                      <p><?php the_excerpt() ?></p>
-                 </div>
-               </li>
-             </ul>
-           <?php endwhile; ?>
-         <?php endif; ?>
+                   </div>
+                 </li>
+               <?php endwhile; ?>
+             <?php endif; ?>
+           </ul>
        </div>
        <?php
      }
