@@ -71,8 +71,8 @@ class RU_Plugin {
        $query = new WP_QUERY( $posts_args );
        ?>
        <div class="wrapper">
-           <ul>
              <?php if ( $query->have_posts() ) : ?>
+               <ul>
                <?php while ( $query->have_posts() ) : $query->the_post() ?>
                  <li>
                    <div class="post">
@@ -84,8 +84,8 @@ class RU_Plugin {
                    </div>
                  </li>
                <?php endwhile; ?>
+               </ul>
              <?php endif; ?>
-           </ul>
        </div>
        <?php
      }
