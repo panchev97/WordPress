@@ -26,7 +26,7 @@
      */
      public function widget( $args, $instance ) {
        extract( $args );
-       
+
        $posts_args = array(
          'post_status'    => 'publish',
          'post_type'      => $instance['post_type_dropdown'],
@@ -38,22 +38,21 @@
        ?>
        <div class="wrapper">
          <h1><?php echo $instance['title'] ?></h1>
-         <?php if ( $query->have_posts() ) :
-           while ( $query->have_posts() ) : $query->the_post() ?>
-             <ul>
-               <li>
-                 <div class="post">
-                   <a href="<?php the_permalink() ?>"
-                     <h3 class="title">
-                       <a href="<?php the_permalink() ?>" title=""><b><?php echo the_title() ?></b></a>
-                     </h3>
+           <ul>
+             <?php if ( $query->have_posts() ) : ?>
+               <?php while ( $query->have_posts() ) : $query->the_post() ?>
+                 <li>
+                   <div class="post">
+                     <a href="<?php the_permalink() ?>"
+                       <h3 class="title">
+                         <a href="<?php the_permalink() ?>" title=""><b><?php echo the_title() ?></b></a>
+                       </h3>
                      <p><?php the_excerpt() ?></p>
-                     <img src="<?php the_post_thumbnail_url() ?>" width="<?php echo $instance['img_width'] ?>" height="<?php echo $instance['img_height'] ?>"  />
-                 </div>
-               </li>
-             </ul>
-           <?php endwhile; ?>
-         <?php endif; ?>
+                   </div>
+                 </li>
+               <?php endwhile; ?>
+             <?php endif; ?>
+           </ul>
        </div>
 
        <?php
