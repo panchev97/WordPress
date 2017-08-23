@@ -48,7 +48,9 @@
                          <a href="<?php the_permalink() ?>" title=""><b><?php echo the_title() ?></b></a>
                        </h3>
                      <p><?php the_excerpt() ?></p>
-                     <img src="<?php the_post_thumbnail_url() ?>" width="<?php echo $instance['img_width'] ?>" height="<?php echo $instance['img_height'] ?>"  />
+                     <?php if ( has_post_thumbnail() ) :  ?>
+                      <img src="<?php the_post_thumbnail_url() ?>" width="<?php echo $instance['img_width'] ?>" height="<?php echo $instance['img_height'] ?>"  />
+                    <?php endif; ?>
                    </div>
                  </li>
                <?php endwhile; ?>
