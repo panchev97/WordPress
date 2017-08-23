@@ -29,8 +29,8 @@
       ?>
       <div class="wrapper">
         <h1><?php echo $instance['title'] ?></h1>
-          <ul>
             <?php if ( $query->have_posts() ) : ?>
+              <ul>
               <?php while ( $query->have_posts() ) : $query->the_post() ?>
                 <li>
                   <div class="post">
@@ -42,8 +42,8 @@
                   </div>
                 </li>
               <?php endwhile; ?>
+              </ul>
             <?php endif; ?>
-          </ul>
       </div>
 
       <?php
