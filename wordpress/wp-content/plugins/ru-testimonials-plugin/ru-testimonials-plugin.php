@@ -95,7 +95,6 @@ class RU_Testimonials_Plugin {
             <?php while ( $query->have_posts() ) : $query->the_post() ?>
               <li>
                 <div class="post">
-                  <a href="<?php the_permalink() ?>"></a>
                     <h3 class="title">
                       <a href="<?php the_permalink() ?>" title=""><b><?php echo the_title() ?></b></a>
                     </h3>
